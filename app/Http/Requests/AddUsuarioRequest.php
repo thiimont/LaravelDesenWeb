@@ -14,9 +14,9 @@ class AddUsuarioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome'  => ['required', 'string', 'min:3', 'max:100'],
-            'email' => ['required', 'email', 'max:255', 'unique:usuarios,email'],
-            'senha' => ['required', 'string', 'min:6', 'max:50'],
+            'nome'     => ['required', 'string', 'min:3', 'max:100'],
+            'email'    => ['required', 'email', 'max:255', 'unique:usuarios,email'],
+            'password' => ['required', 'string', 'min:6', 'max:50'],
         ];
     }
 
@@ -33,10 +33,10 @@ class AddUsuarioRequest extends FormRequest
             'email.max'              => 'O email não pode exceder :max caracteres.',
             'email.unique'           => 'O email já está registrado.',
 
-            'senha.required'         => 'A senha é obrigatória.',
-            'senha.string'           => 'A senha deve ser um texto.',
-            'senha.min'              => 'A senha deve ter pelo menos :min caracteres.',
-            'senha.max'              => 'A senha não pode exceder :max caracteres.',
+            'password.required'         => 'A senha é obrigatória.',
+            'password.string'           => 'A senha deve ser um texto.',
+            'password.min'              => 'A senha deve ter pelo menos :min caracteres.',
+            'password.max'              => 'A senha não pode exceder :max caracteres.',
         ];
     }
 }

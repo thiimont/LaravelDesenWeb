@@ -19,7 +19,7 @@
 
                 <div class="mb-3">
                     <label class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="senha" name="senha" placeholder="Deixe em branco para manter a senha atual.">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Deixe em branco para manter a senha atual.">
                 </div>
                 <button type="submit" class="btn btn-warning">Atualizar</button>
         </form>

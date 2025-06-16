@@ -179,7 +179,7 @@ class AppController extends Controller
     public function addusuario(AddUsuarioRequest $request){
         $dadosValidados = $request->validated();
 
-        $dadosValidados['senha'] = Hash::make($dadosValidados['senha']);
+        $dadosValidados['password'] = Hash::make($dadosValidados['password']);
 
         $usuario = Usuario::create($dadosValidados);
 
@@ -215,10 +215,10 @@ class AppController extends Controller
 
         $dadosValidados = $request->validated();
 
-        if (!empty($dadosValidados['senha'])) {
-            $dadosValidados['senha'] = Hash::make($dadosValidados['senha']);
+        if (!empty($dadosValidados['password'])) {
+            $dadosValidados['password'] = Hash::make($dadosValidados['password']);
         } else {
-            unset($dadosValidados['senha']);
+            unset($dadosValidados['password']);
         }
 
         $usuario->update($dadosValidados);
@@ -263,7 +263,7 @@ class AppController extends Controller
     public function login(LoginRequest $request){
         $credenciais = [
             'email' => $request->email,
-            'password' => $request->senha,
+            'password' => $request->password,
         ];
 
         if (!Auth::attempt($credenciais)) {

@@ -39,6 +39,6 @@ Route::delete('/excluirusuario/{id}', [AppController::class, 'excluirusuario']);
 # Login
 Route::get('/frmlogin', [AppController::class, 'frmlogin'])->name('login');
 Route::get('/dashboard', [AppController::class, 'dashboard']);
-Route::get('/logout', [AppController::class, 'logout'])->name('logout');
 
 Route::post('/login', [AppController::class, 'login']);
+Route::post('/logout', [AppController::class, 'logout'])->name('logout');

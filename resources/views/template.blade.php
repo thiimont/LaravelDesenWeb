@@ -16,36 +16,43 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="/">Home</a>
+              <a class="nav-link" href="{{ url('/') }}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="produtos">Produtos</a>
+              <a class="nav-link" href="{{ url('produtos') }}">Produtos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="sobre">Sobre</a>
+              <a class="nav-link" href="{{ url('sobre') }}">Sobre</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contato">Contato</a>
+              <a class="nav-link" href="{{ url('contato') }}">Contato</a>
             </li>
           </ul>
 
           <ul class="navbar-nav ms-auto">
-            @if(Auth::check())
-              <div class="dropdown">
-                <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Olá, {{ Auth::user()->nome }}
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="dashboard">Dashboard</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="logout">Logout</a></li>
-                </ul>
-              </div>
-            @else
-              <li class="nav-item">
-                <a href="frmlogin" class="btn btn-primary">Login</a>
-              </li>
-            @endif
+              @if(Auth::check())
+                  <div class="dropdown">
+                      <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Olá, {{ Auth::user()->nome }}
+                      </button>
+                      <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="{{ url('dashboard') }}">Dashboard</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li>
+                              <form method="POST" action="{{ route('logout') }}">
+                                  @csrf
+                                  <button type="submit" class="dropdown-item">
+                                      Logout
+                                  </button>
+                              </form>
+                          </li>
+                      </ul>
+                  </div>
+              @else
+                  <li class="nav-item">
+                      <a href="{{ url('frmlogin') }}" class="btn btn-primary">Login</a>
+                  </li>
+              @endif
           </ul>
         </div>
       </div>
@@ -75,6 +82,6 @@
         @endif
         @yield('conteudo')
     </main>
-    <script src="js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </body>
 </html>

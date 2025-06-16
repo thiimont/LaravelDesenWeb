@@ -12,7 +12,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="senha" name="senha" required>
+                    <input type="password" class="form-control" id="password" name="password" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Entrar</button>
                 <a href="frmusuario" class="btn btn-link">Não tem uma conta? Cadastre-se!</a>
