@@ -76,6 +76,10 @@ class AppController extends Controller
     }
 
     public function excluircontato($id){
+        if (!Auth::check()) {
+            return redirect('/frmlogin')->with('erro', 'Você precisa estar autenticado para acessar esta página!');
+        }
+
         $contato = Contato::findOrFail($id);
 
         $contato->delete();
@@ -108,15 +112,20 @@ class AppController extends Controller
     }
 
     public function frmeditproduto($id){
-        $produto = Produto::findOrFail($id);
         if (!Auth::check()) {
             return redirect('/frmlogin')->with('erro', 'Você precisa estar autenticado para acessar esta página!');
         }
+
+        $produto = Produto::findOrFail($id);
 
         return view('frmeditproduto', ['prod'=>$produto]);
     }
 
     public function atualizarproduto(AtualizarProdutoRequest $request, $id){
+        if (!Auth::check()) {
+            return redirect('/frmlogin')->with('erro', 'Você precisa estar autenticado para acessar esta página!');
+        }
+
         $produto = Produto::findOrFail($id);
 
         $dadosValidados = $request->validated();
@@ -127,6 +136,10 @@ class AppController extends Controller
     }
 
     public function excluirproduto($id){
+        if (!Auth::check()) {
+            return redirect('/frmlogin')->with('erro', 'Você precisa estar autenticado para acessar esta página!');
+        }
+
         $produto = Produto::findOrFail($id);
 
         $produto->delete();
@@ -143,6 +156,10 @@ class AppController extends Controller
     }
 
     public function addproduto(AddProdutoRequest $request){
+        if (!Auth::check()) {
+            return redirect('/frmlogin')->with('erro', 'Você precisa estar autenticado para acessar esta página!');
+        }
+
         $dadosValidados = $request->validated();
 
         if ($request->hasFile('imagem')) {
@@ -180,15 +197,20 @@ class AppController extends Controller
     }
 
     public function frmeditusuario($id){
-        $usuario = Usuario::findOrFail($id);
         if (!Auth::check()) {
             return redirect('/frmlogin')->with('erro', 'Você precisa estar autenticado para acessar esta página!');
         }
+
+        $usuario = Usuario::findOrFail($id);
 
         return view('frmeditusuario', ['user'=>$usuario]);
     }
 
     public function atualizarusuario(AtualizarUsuarioRequest $request, $id){
+        if (!Auth::check()) {
+            return redirect('/frmlogin')->with('erro', 'Você precisa estar autenticado para acessar esta página!');
+        }
+
         $usuario = Usuario::findOrFail($id);
 
         $dadosValidados = $request->validated();
@@ -205,6 +227,10 @@ class AppController extends Controller
     }
 
     public function excluirusuario($id){
+        if (!Auth::check()) {
+            return redirect('/frmlogin')->with('erro', 'Você precisa estar autenticado para acessar esta página!');
+        }
+
         $usuario = Usuario::findOrFail($id);
 
         $usuario->delete();
