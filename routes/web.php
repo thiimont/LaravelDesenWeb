@@ -37,8 +37,8 @@ Route::put('/atualizarusuario/{id}', [AppController::class, 'atualizarusuario'])
 Route::delete('/excluirusuario/{id}', [AppController::class, 'excluirusuario']);
 
 # Login
-Route::get('/frmlogin', [AppController::class, 'frmlogin']);
+Route::get('/frmlogin', [AppController::class, 'frmlogin'])->name('login');
 Route::get('/dashboard', [AppController::class, 'dashboard']);
-Route::get('/logout', [AppController::class, 'logout']);
+Route::get('/logout', [AppController::class, 'logout'])->name('logout');
 
-Route::post('/logar', [AppController::class, 'logar']);
+Route::post('/login', [AppController::class, 'login']);

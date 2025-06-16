@@ -4,7 +4,7 @@
 @section('conteudo')
     <div class="container mt-5">
         <div>
-            <h2>Bem-vindo(a), {{ session('usuario_nome') }}</h2>
+            <h2>Bem-vindo(a), {{ Auth::user()->nome }}</h2>
         </div>
 
         <div class="accordion" id="accordionExample">

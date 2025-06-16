@@ -30,10 +30,10 @@
           </ul>
 
           <ul class="navbar-nav ms-auto">
-            @if(session()->has('usuario_id'))
+            @if(Auth::check())
               <div class="dropdown">
                 <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Olá, {{ session('usuario_nome') }}
+                  Olá, {{ Auth::user()->nome }}
                 </button>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="dashboard">Dashboard</a></li>
@@ -61,6 +61,16 @@
         @if(session('erro'))
           <div class="alert alert-danger" role="alert">
               {{ session('erro') }}
+          </div>
+        @endif
+
+        @if ($errors->any())
+          <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $erro)
+                      <li>{{ $erro }}</li>
+                  @endforeach
+              </ul>
           </div>
         @endif
         @yield('conteudo')

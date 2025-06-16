@@ -9,17 +9,17 @@
             
                 <div class="mb-3">
                     <label class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="fnome" name="fnome" required>
+                    <input type="text" class="form-control" id="nome" name="nome" required>
                 </div>
                 
                 <div class="mb-3">
                     <label class="form-label">Email</label>
-                    <input type="email" class="form-control" id="femail" name="femail" required>
+                    <input type="email" class="form-control" id="email" name="email" required>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="fsenha" name="fsenha" required>
+                    <input type="password" class="form-control" id="senha" name="senha" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Cadastrar</button>
         </form>

@@ -3,11 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Session;
+
 use App\Models\Produto;
 use App\Models\Usuario;
 use App\Models\Contato;
-use Illuminate\Support\Facades\Hash;
-use Session;
+
+use App\Http\Requests\ContatoRequest;
+
+use App\Http\Requests\AddProdutoRequest;
+use App\Http\Requests\AtualizarProdutoRequest;
+
+use App\Http\Requests\AddUsuarioRequest;
+use App\Http\Requests\AtualizarUsuarioRequest;
+
+use App\Http\Requests\LoginRequest;
 
 class AppController extends Controller
 {
@@ -54,7 +66,7 @@ class AppController extends Controller
     }
 
     public function listacontatos(){
-        if(!session()->has('usuario_id')){
+        if (!Auth::check()) {
             return redirect('/frmlogin')->with('erro', 'Você precisa estar autenticado para acessar esta página!');
         }
 
@@ -71,19 +83,14 @@ class AppController extends Controller
         return redirect('listacontatos')->with('sucesso', 'Mensagem excluída com sucesso!');
     }
 
-    public function enviarcontato(Request $request){
-        $msg = new Contato();
+    public function enviarcontato(ContatoRequest $request){
+        $dadosValidados = $request->validated();
 
-        $msg->nome = $request->nome;
-        $msg->email = $request->email;
-        $msg->assunto = $request->assunto;
-        $msg->mensagem = $request->mensagem;
-
-        $msg->save();
+        $msg = Contato::create($dadosValidados);
 
         return redirect('contato')->with('sucesso', 'Mensagem enviada com sucesso!');
     }
-    
+
     public function produtos(){
         $produtos = Produto::all();
 
@@ -91,7 +98,7 @@ class AppController extends Controller
     }
 
     public function listaprodutos(){
-        if(!session()->has('usuario_id')){
+        if (!Auth::check()) {
             return redirect('/frmlogin')->with('erro', 'Você precisa estar autenticado para acessar esta página!');
         }
 
@@ -102,23 +109,19 @@ class AppController extends Controller
 
     public function frmeditproduto($id){
         $produto = Produto::findOrFail($id);
-        if(!session()->has('usuario_id')){
+        if (!Auth::check()) {
             return redirect('/frmlogin')->with('erro', 'Você precisa estar autenticado para acessar esta página!');
         }
 
         return view('frmeditproduto', ['prod'=>$produto]);
     }
 
-    public function atualizarproduto(Request $request, $id){
+    public function atualizarproduto(AtualizarProdutoRequest $request, $id){
         $produto = Produto::findOrFail($id);
 
-        $dados = [
-            'nome' => $request->fnome,
-            'preco' => $request->fpreco,
-            'quantidade' => $request->fquantidade
-        ];
+        $dadosValidados = $request->validated();
 
-        $produto->update($dados);
+        $produto->update($dadosValidados);
 
         return redirect('listaprodutos')->with('sucesso', 'Produto atualizado com sucesso!');
     }
@@ -132,26 +135,22 @@ class AppController extends Controller
     }
 
     public function frmproduto(){
-        if(!session()->has('usuario_id')){
+        if (!Auth::check()) {
             return redirect('/frmlogin')->with('erro', 'Você precisa estar autenticado para acessar esta página!');
         }
 
         return view('frmproduto');
     }
 
-    public function addproduto(Request $request){
-        $prod = new Produto();
+    public function addproduto(AddProdutoRequest $request){
+        $dadosValidados = $request->validated();
 
-        $prod->nome = $request->nome;
-        $prod->preco = $request->preco;
-        $prod->quantidade = $request->quantidade;
-
-        if($request->hasFile('imagem')){
+        if ($request->hasFile('imagem')) {
             $path = $request->file('imagem')->store('imagens', 'public');
-            $prod->imagem = $path;
+            $dadosValidados['imagem'] = $path;
         }
 
-        $prod->save();
+        $prod = Produto::create($dadosValidados);
 
         return redirect('produtos');
     }
@@ -160,20 +159,18 @@ class AppController extends Controller
         return view('frmusuario');
     }
 
-    public function addusuario(Request $request){
-        $usuario = new Usuario();
+    public function addusuario(AddUsuarioRequest $request){
+        $dadosValidados = $request->validated();
 
-        $usuario->nome = $request->fnome;
-        $usuario->email = $request->femail;
-        $usuario->senha = Hash::make($request->fsenha);
-        
-        $usuario->save();
+        $dadosValidados['senha'] = Hash::make($dadosValidados['senha']);
+
+        $usuario = Usuario::create($dadosValidados);
 
         return redirect('dashboard');
     }
 
     public function listausuarios(){
-        if(!session()->has('usuario_id')){
+        if (!Auth::check()) {
             return redirect('/frmlogin')->with('erro', 'Você precisa estar autenticado para acessar esta página!');
         }
 
@@ -184,26 +181,25 @@ class AppController extends Controller
 
     public function frmeditusuario($id){
         $usuario = Usuario::findOrFail($id);
-        if(!session()->has('usuario_id')){
+        if (!Auth::check()) {
             return redirect('/frmlogin')->with('erro', 'Você precisa estar autenticado para acessar esta página!');
         }
 
         return view('frmeditusuario', ['user'=>$usuario]);
     }
 
-    public function atualizarusuario(Request $request, $id){
+    public function atualizarusuario(AtualizarUsuarioRequest $request, $id){
         $usuario = Usuario::findOrFail($id);
 
-        $dados = [
-            'nome' => $request->fnome,
-            'email' => $request->femail
-        ];
+        $dadosValidados = $request->validated();
 
-        if(!empty($request->fsenha)){
-            $dados['senha'] = Hash::make($request->fsenha);
+        if (!empty($dadosValidados['senha'])) {
+            $dadosValidados['senha'] = Hash::make($dadosValidados['senha']);
+        } else {
+            unset($dadosValidados['senha']);
         }
 
-        $usuario->update($dados);
+        $usuario->update($dadosValidados);
 
         return redirect('listausuarios')->with('sucesso', 'Usuário atualizado com sucesso!');
     }
@@ -217,37 +213,37 @@ class AppController extends Controller
     }
 
     public function frmlogin(){
-        if(session()->has('usuario_id')){
-            return view('dashboard');
+        if (Auth::check()) {
+            return redirect()->route('dashboard');
         }
 
         return view('frmlogin');
     }
 
     public function dashboard(){
-        if(!session()->has('usuario_id')){
-            return redirect('/frmlogin')->with('erro', 'Você precisa estar autenticado para acessar esta página!');
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('erro', 'Você precisa estar autenticado para acessar esta página!');
         }
 
         return view('dashboard');
     }
 
     public function logout(){
-        Session::flush();
-        
-        return redirect('/');
+        Auth::logout();
+
+        return redirect()->route('login');
     }
 
-    public function logar(Request $request){
-        $user = Usuario::where('email', $request->email)->first();
+    public function login(LoginRequest $request){
+        $credenciais = [
+            'email' => $request->email,
+            'password' => $request->senha,
+        ];
 
-        if(!$user || !Hash::check($request->senha, $user->senha)){
+        if (!Auth::attempt($credenciais)) {
             return redirect('/frmlogin')->with('erro', 'Email e/ou senha inválidos!');
         }
 
-        Session::put('usuario_id', $user->id);
-        Session::put('usuario_nome', $user->nome);
-
-        return view('dashboard');
+        return redirect()->intended('/dashboard');
     }
 }

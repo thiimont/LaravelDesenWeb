@@ -13,7 +13,7 @@
 
                 <div class="mb-3">
                     <label class="form-label">Preço</label>
-                    <input type="text" class="form-control" id="preco" name="preco" required>
+                    <input type="number" class="form-control" id="preco" name="preco" required>
                 </div>
 
                 <div class="mb-3">
@@ -23,7 +23,7 @@
                 
                 <div class="mb-3">
                     <label class="form-label">Imagem</label>
-                    <input type="file" id="imagem" name="imagem" accept="image/*" required>
+                    <input type="file" id="imagem" name="imagem" accept="image/*">
                 </div>
                 <button type="submit" class="btn btn-primary">Cadastrar</button>
         </form>

@@ -9,17 +9,17 @@
             @method('PUT')
                 <div class="mb-3">
                     <label class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="fnome" name="fnome" required value="{{ $prod->nome }}">
+                    <input type="text" class="form-control" id="nome" name="nome" required value="{{ $prod->nome }}">
                 </div>
                 
                 <div class="mb-3">
                     <label class="form-label">Preço</label>
-                    <input type="number" class="form-control" id="fpreco" name="fpreco" required value="{{ $prod->preco }}">
+                    <input type="number" class="form-control" id="preco" name="preco" required value="{{ $prod->preco }}">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Quantidade</label>
-                    <input type="number" class="form-control" id="fquantidade" name="fquantidade" required value="{{ $prod->quantidade }}">
+                    <input type="number" class="form-control" id="quantidade" name="quantidade" required value="{{ $prod->quantidade }}">
                 </div>
                 <button type="submit" class="btn btn-warning">Atualizar</button>
         </form>

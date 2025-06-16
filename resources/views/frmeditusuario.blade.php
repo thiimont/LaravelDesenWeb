@@ -9,17 +9,17 @@
             @method('PUT')
                 <div class="mb-3">
                     <label class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="fnome" name="fnome" required value="{{ $user->nome }}">
+                    <input type="text" class="form-control" id="nome" name="nome" required value="{{ $user->nome }}">
                 </div>
                 
                 <div class="mb-3">
                     <label class="form-label">Email</label>
-                    <input type="email" class="form-control" id="femail" name="femail" required value="{{ $user->email }}">
+                    <input type="email" class="form-control" id="email" name="email" required value="{{ $user->email }}">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="fsenha" name="fsenha" placeholder="Deixe em branco para manter a senha atual.">
+                    <input type="password" class="form-control" id="senha" name="senha" placeholder="Deixe em branco para manter a senha atual.">
                 </div>
                 <button type="submit" class="btn btn-warning">Atualizar</button>
         </form>

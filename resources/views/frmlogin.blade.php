@@ -3,7 +3,7 @@
 
 @section('conteudo')
     <div class="container mt-5">
-        <form action="/logar" method="POST" enctype="multipart/form-data">
+        <form action="/login" method="POST" enctype="multipart/form-data">
             @csrf
                 <h1>Faça login para continuar</h1>
                 <div class="mb-3">
