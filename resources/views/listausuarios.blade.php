@@ -34,7 +34,9 @@
                             <form action="/excluirusuario/{{ $u->id }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Excluir</button>
+                                <button type="submit" class="btn btn-danger">
+                                    Excluir
+                                </button>
                             </form>
                         </td>
                     </tr>

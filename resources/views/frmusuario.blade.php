@@ -21,6 +21,9 @@
                     <label class="form-label">Senha</label>
                     <input type="password" class="form-control" id="password" name="password" required>
                 </div>
+                <ul>
+                    <li>A senha deve ter pelo menos 6 caracteres. Use símbolos e números para maior segurança.</li>
+                </ul>
                 <button type="submit" class="btn btn-primary">Cadastrar</button>
         </form>
     </div>

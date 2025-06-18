@@ -4,7 +4,7 @@
 @section('conteudo')
     <div class="container mt-5">
         <div>
-            <h2>Bem-vindo(a), {{ Auth::user()->nome }}</h2>
+            <h1>Dashboard</h1>
         </div>
 
         <div class="accordion" id="accordionExample">
@@ -24,7 +24,12 @@
                             <div class="card-body">
                                 <h5 class="card-title">Lista de usuários</h5>
                                 <p class="card-text">Veja e gerencie o cadastro de usuários.</p>
-                                <a href="listausuarios" class="btn btn-success">Acessar</a>
+                                <a class="icon-link icon-link-hover" href="listausuarios">
+                                Acessar
+                                <svg xmlns="http://www.w3.org/2000/svg" class="bi" viewBox="0 0 16 16" aria-hidden="true">
+                                    <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                                </svg>
+                                </a>
                             </div>
                             </div>
                         </div>
@@ -33,7 +38,12 @@
                             <div class="card-body">
                                 <h5 class="card-title">Cadastro de usuários</h5>
                                 <p class="card-text">É possível cadastrar novos usuários aqui.</p>
-                                <a href="frmusuario" class="btn btn-success">Acessar</a>
+                                <a class="icon-link icon-link-hover" href="frmusuario">
+                                Acessar
+                                <svg xmlns="http://www.w3.org/2000/svg" class="bi" viewBox="0 0 16 16" aria-hidden="true">
+                                    <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                                </svg>
+                                </a>
                             </div>
                             </div>
                         </div>
@@ -59,7 +69,12 @@
                             <div class="card-body">
                                 <h5 class="card-title">Lista de produtos</h5>
                                 <p class="card-text">Veja e gerencie todos os produtos presentes no sistema.</p>
-                                <a href="listaprodutos" class="btn btn-success">Acessar</a>
+                                <a class="icon-link icon-link-hover" href="listaprodutos">
+                                Acessar
+                                <svg xmlns="http://www.w3.org/2000/svg" class="bi" viewBox="0 0 16 16" aria-hidden="true">
+                                    <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                                </svg>
+                                </a>
                             </div>
                             </div>
                         </div>
@@ -68,7 +83,12 @@
                             <div class="card-body">
                                 <h5 class="card-title">Cadastro de produtos</h5>
                                 <p class="card-text">É possível cadastrar novos produtos aqui.</p>
-                                <a href="frmproduto" class="btn btn-success">Acessar</a>
+                                <a class="icon-link icon-link-hover" href="frmproduto">
+                                Acessar
+                                <svg xmlns="http://www.w3.org/2000/svg" class="bi" viewBox="0 0 16 16" aria-hidden="true">
+                                    <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                                </svg>
+                                </a>
                             </div>
                             </div>
                         </div>
@@ -93,7 +113,12 @@
                             <div class="card-body">
                                 <h5 class="card-title">Lista de contatos</h5>
                                 <p class="card-text">Veja e gerencie todas as mensagens enviadas por usuários.</p>
-                                <a href="listacontatos" class="btn btn-success">Acessar</a>
+                                <a class="icon-link icon-link-hover" href="listacontatos">
+                                Acessar
+                                <svg xmlns="http://www.w3.org/2000/svg" class="bi" viewBox="0 0 16 16" aria-hidden="true">
+                                    <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                                </svg>
+                                </a>
                             </div>
                             </div>
                         </div>
