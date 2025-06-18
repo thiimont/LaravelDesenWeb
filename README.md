@@ -2,4 +2,4 @@
 
 Projeto desenvolvido por mim e pelo <a href="https://www.linkedin.com/in/guilherme-cau%C3%A3-soares/">Guilherme Cauã Soares</a> na disciplina de Desenvolvimento Web II, sob a orientação da professora Eulaliane Gonçalves.
 
-Conta com uma interface moderna e responsiva **(Bootstrap v5.3)** e boas práticas de segurança (uso de middleware para verificação de autenticação, rate limiting, validações com FormRequest, proteção contra CSRF e hashing das senhas em Argon2id).
+Conta com uma interface moderna e responsiva **(Bootstrap v5.3)** e boas práticas de segurança **(uso de middleware para verificação de autenticação, rate limiting, validações com FormRequest, proteção contra CSRF e hashing das senhas em Argon2id)**.
